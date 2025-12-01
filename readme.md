@@ -1,35 +1,28 @@
-## build
+# Mileage
+Classic Android app to track fuel economy. 
 
-install command line tools:
-https://developer.android.com/studio#downloads
+Known issues:
+- The three-dot menu button stops working sometimes (restart the app to get it to work again)
+- charts don't work. 
 
-environment setup:
+## Changes in This Fork
+Add a script for setting up the build environment in GitHub Codespaces
+
+## Environment Setup
+
+Create a GitHub Codespace.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/zoidy/android-mileage?quickstart=1)
+
+In the VSCode terminal
 ```
-v=8
-export JAVA_HOME=/usr/lib/jvm/java-${v}-openjdk
-export PATH="/usr/lib/jvm/java-${v}-openjdk/bin/:$PATH"
-
-export ANDROID_HOME=/home/user/tmp/Library/Android
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$gbin
-sdkm="sdkmanager --sdk_root=$ANDROID_HOME"
-export ANDROID_SDK_ROOT=$ANDROID_HOME
+bash codespaces-setupenv.sh
+source ~/.bashrc
 ```
+This will install the necessary dependencies and set up the necessary environment variables. This only needs to be done once.
 
-install correct sdk:
-```
-$sdkm --install 'build-tools;30.0.2' 'platforms;android-30' 'sources;android-30' 'add-ons;addon-google_apis-google-24'
-```
-
-build:
+## Build
 ```
 ./gradlew build
 ```
-
-### install
-```
-adb install ./app/build/outputs/apk/release/app-release.apk
-```
-
-### about
-
-I used a combination of the react-native gradle files and [this article](https://coderwall.com/p/npki6q/migrate-existing-android-project-to-gradle) to migrate this to gradle.
+The apk will be in `./app/build/outputs/apk/release/app-release.apk` which can be downloaded manually from the VSCode Explorer and transferred to the phone.
